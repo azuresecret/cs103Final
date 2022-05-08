@@ -1,0 +1,28 @@
+
+<div >
+    <h2>a condensed menu list for restaurant managers</h2>
+    <div class="">
+        <table  class="table table-success table-striped" id="menuInputTable">
+            <thead>
+            <tr>
+                <th scope="col">Dish ID</th>
+                <th scope="col">Dish Name</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Dish Price</th>
+            </tr>
+            </thead>
+            <tbody id='tableBody'>
+            <% for (menu of menuList) { %>
+            <tr id = 'tableRow'>
+                <td>   <%= menu.itemId %></td>
+                <td>   <%= menu.name %></td>
+                <td>  <%= menu.ingredients %></td>
+                <td>   <%= menu.price %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+        <%= menuList %>
+    </div>
+
+</div>

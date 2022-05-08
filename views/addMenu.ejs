@@ -1,0 +1,54 @@
+<h1>Add items to your menu</h1>
+<script>
+  function addNewLine() {
+    console.log('boop')
+    const node = document.getElementById("tableBody").firstElementChild;
+    console.log( document.getElementById("tableRow"), 'boop', node)
+    const currentDishID = node.children[0].children[0].name;
+    const currentDishName = node.children[1].children[0].name;
+    const currentDishIngredients = node.children[2].children[0].name;
+    const currentDishPrice = node.children[3].children[0].name;
+    const newInteger = parseInt(currentDishID.charAt(currentDishID.length-1))+1;
+
+    const newDishID = currentDishID.slice(0, -1) + newInteger;
+    const newDishName = currentDishName.slice(0, -1) + newInteger;
+    const newDishIngredients = currentDishIngredients.slice(0, -1) + newInteger;
+    const newDishPrice = currentDishPrice.slice(0,-1)+newInteger;
+    const clone = node.cloneNode(true);
+    clone.children[0].children[0].name = newDishID;
+    clone.children[1].children[0].name = newDishName;
+    clone.children[2].children[0].name = newDishIngredients;
+    clone.children[3].children[0].name = newDishPrice;
+
+    document.getElementById("tableBody").appendChild(clone);
+
+  }
+</script>
+
+<form method="post" action="/add-menu">
+
+    Please enter your menu item below.
+    <table  class="table-primary" id="menuInputTable">
+        <thead>
+            <tr>
+                <th scope="col">Dish ID</th>
+                <th scope="col">Dish Name</th>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Dish Price</th>
+            </tr>
+        </thead>
+        <tbody id='tableBody'>
+            <tr id = 'tableRow'>
+                <td><input class="form-control form-control-sm" type="number" name="dishID1"></td>
+                <td> <input class="form-control form-control-sm" type="text" name="dishName1"></td>
+                <td> <input  class="form-control form-control-sm"type="text" name="dishIngredients1"></td>
+                <td> <input  class="form-control form-control-sm"type="number" name="dishPrice1"></td>
+                <td>  <button  onClick = "addNewLine()"  type="button" class="btn btn-info">Add Another </button> </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-md btn-danger">
+</form>
+
+
+

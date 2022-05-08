@@ -1,0 +1,42 @@
+<div >
+    <h2>a simplified order list to show pending orders. </h2>
+    <div class="">
+        <form method="post" action="/orderList/finish" >
+        <table  class="table table-success table-striped" id="menuInputTable">
+            <thead>
+            <tr>
+                <th scope="col">Order Time</th>
+                <th scope="col">Customer Phone</th>
+                <th scope="col">Order Content</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Done</th>
+            </tr>
+            </thead>
+            <tbody id='tableBody'>
+            <% for (order of orderList) { %>
+                <% for (singleOrderContent of order.orderContent) {  %>
+                <tr id = 'tableRow'>
+                    <td>   <%= Math.floor(Math.floor((new Date() - order.timeStamp) / 1000) /60) %> minutes ago</td>
+                    <td>   <%= order.customerPhone %></td>
+                    <td>  <%= singleOrderContent.itemName +  singleOrderContent.quantity %></td>
+                    <td>   <%= order.completed %></td>
+                    <td>
+
+                        <button>
+                            <input id="btncheck1" type="submit" class="btn btn-md btn-danger">
+
+                        </button>
+
+                    </td>
+                </tr>
+                <input name="order" type='hidden' value = <%= order._id %> >
+                <% } %>
+            <% } %>
+            </tbody>
+        </table>
+
+        </form>
+        <%= orderList %>
+    </div>
+
+</div>
