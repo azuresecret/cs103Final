@@ -87,12 +87,10 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/orderList", async (req, res, next) => {
-  //FIXME: TEMPORARY SET USER NAME, REMOVE BEFORE SUBMIT,.
-  const currentAdminUsername = res.locals.username || "lulu123";
-  console.log(req.session, 'current name is ', currentAdminUsername, res.locals);
+  
+  const currentAdminUsername = res.locals.username
   const allList = await Order.find({});
   const userOrderList  = await Order.find({userName: currentAdminUsername}).exec();
-  console.log(allList, 'this is the list ', userOrderList);
   res.locals.orderList = userOrderList;
   res.render("orderList")
 })
@@ -123,8 +121,6 @@ app.post("/add-order", async(req, res, next)=>{
     const newItemID = req.body['dishID'+a];
     const newDishQuantity = req.body['dishQuantity'+a];
 
-    console.log(newItemID, 'is the id');
-
     if (!newItemID && !newDishQuantity) break;
     if ( !newItemID || !newDishQuantity )  return  next(createError('required params missing from your form. '));
     const itemDetails = await MenuItem.find({itemId: newItemID});
@@ -133,10 +129,10 @@ app.post("/add-order", async(req, res, next)=>{
     subTotal += itemDetails[0].price * newDishQuantity;
     orderContentArr.push({itemId: itemDetails[0].itemId, quantity: newDishQuantity, itemName: itemDetails[0].name });
   }
-  console.log('I am here', subTotal);
+ ;
   res.locals.subTotal = subTotal;
-  //FIXME: TEMPORARY SET USER NAME, REMOVE BEFORE SUBMIT,.
-  const currentAdminUsername = res.locals.username || "lulu123";
+  
+  const currentAdminUsername = res.locals.username 
   const newOrder = new Order({
     userName:  currentAdminUsername,
     timeStamp: new Date(),
