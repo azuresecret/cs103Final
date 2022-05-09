@@ -1,0 +1,22 @@
+{
+  "name": "personalapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "0.27.2",
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "2.7.4",
+    "express": "4.18.1",
+    "express-ejs-layouts": "2.5.1",
+    "express-session": "^1.16.2",
+    "http-errors": "~1.6.3",
+    "mongoose": "6.3.2",
+    "nodemon": "2.0.16"
+  }
+}

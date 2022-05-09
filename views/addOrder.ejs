@@ -1,0 +1,62 @@
+<h1>Manually add a new customer order</h1>
+<script>
+  function addNewLine() {
+    const node = document.getElementById("tableBody").children[0];
+    const currentDishID = node.children[0].children[0].name;
+    const currentDishQuantity = node.children[1].children[0].name;
+
+    const newInteger = parseInt(currentDishID.charAt(currentDishID.length-1))+1;
+
+    const newDishID = currentDishID.slice(0, -1) + newInteger;
+    const newDishQuantity = currentDishQuantity.slice(0,-1) + newInteger;
+
+    const clone = node.cloneNode(true);
+    clone.children[0].children[0].name = newDishID;
+    clone.children[1].children[0].name = newDishQuantity;
+
+    document.getElementById("tableBody").appendChild(clone);
+
+  }
+</script>
+
+<form method="post" action="/add-order">
+    <h3> Please enter customer details below. </h3>
+    <table class="table-primary">
+        <thead>
+        <tr class="table-primary">
+            <th scope="col">Customer phone number </th>
+        </tr>
+        </thead>
+        <tbody id='numberTableBody'>
+        <tr class="table-primary"id = 'tableRowNum'>
+            <td><input class="form-control form-control-sm" type="number" name="phoneNumber"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h3> Please enter your order details below. </h3>
+    <br>
+    <table  class="table-primary" id="menuInputTable">
+        <thead>
+        <tr>
+            <th scope="col">Dish ID</th>
+            <th scope="col">Dish Quantity</th>
+        </tr>
+        </thead>
+        <tbody id='tableBody'>
+            <tr id = 'tableRow'>
+                <td> <input class="form-control form-control-sm" type="text" name="dishID1"></td>
+                <td> <input  class="form-control form-control-sm"type="text" name="dishQuantity1"></td>
+                <td>  <button  onClick = "addNewLine()"  type="button" class="btn btn-info">Add Another </button> </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-md btn-danger">
+</form>
+
+
